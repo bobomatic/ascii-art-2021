@@ -18,6 +18,7 @@ app.config['TXT_FOLDER'] = TXT_FOLDER
 app.config['ASCII_IMAGE_FOLDER'] = ASCII_IMAGE_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024  # File max size set to 4MB
 
+
 def convert_image(path):
     ascii_image = handle_image_conversion(path, KEY_FOLDER)
     with open(app.config['TXT_FOLDER'] + '/temp.txt', 'w') as f:
@@ -27,8 +28,9 @@ def convert_image(path):
 
 @app.route('/')
 def get_index():
+    #return render_template('index.html', image = convert_image(DEFAULT_IMAGE_PATH), filename = DEFAULT_IMAGE_PATH)
+    #return render_template('index.html', image = app.config['ASCII_IMAGE_FOLDER'] + '/temp.png', filename = DEFAULT_IMAGE_PATH)
     return render_template('index.html', image = convert_image(DEFAULT_IMAGE_PATH), filename = DEFAULT_IMAGE_PATH)
-
 
 @app.route('/generate', methods=['GET', 'POST'])
 def generate():
